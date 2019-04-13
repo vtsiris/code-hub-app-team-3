@@ -16,4 +16,13 @@ export class ApiServiceService {
   postBug(bug: Bug) {
     return this.http.post<Bug>('https://bug-report-system-server.herokuapp.com/bugs', bug);
   }
+
+  editBug(bug: Bug) {
+    return this.http.put<Bug>('https://bug-report-system-server.herokuapp.com/bugs/' + bug.id, bug);
+  }
+
+  deleteBug(bug: Bug) {
+    return this.http.delete('https://bug-report-system-server.herokuapp.com/bugs/' + bug.id);
+  }
+
 }

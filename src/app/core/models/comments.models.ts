@@ -1,4 +1,5 @@
-export interface Comments {
-  reporter: string;
-  description: string;
+export interface Comment {
+  _id: string;
+ reporter: string;
+ description: string;
  }
