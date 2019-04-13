@@ -1,3 +1,4 @@
+import { GearToggleService } from './../../core/services/gear-toggle.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GearComponent implements OnInit {
 
-  constructor() { }
+  isOpen: boolean;
+
+  constructor(private gearToggle: GearToggleService) { }
 
   ngOnInit() {
+    this.gearToggle.isOpen.subscribe(data => this.isOpen = data);
   }
 
+  toggle() {
+    this.gearToggle.isOpen.next(!this.isOpen);
+  }
 }

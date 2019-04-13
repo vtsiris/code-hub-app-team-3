@@ -3,17 +3,22 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from '../core/modules/material.module';
 import { GearComponent } from './gear/gear.component';
+import { RouterModule } from '@angular/router';
+import { OpenCloseComponent } from './open-close/open-close.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    GearComponent],
+    GearComponent,
+    OpenCloseComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent,
-    GearComponent]
+    GearComponent,
+    OpenCloseComponent]
 })
 export class SharedModule { }
