@@ -1,10 +1,10 @@
-import { Comments } from "./comments.models";
+import { Comment } from './comments.models';
 
-export interface Bugs {
+export interface Bug {
   title: string;
   description: string;
   priority: number;
   reporter: string;
   status: string;
-  comments: Array<Comments>;
+  comments: Array<Comment>;
  }
