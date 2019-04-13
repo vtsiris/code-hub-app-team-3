@@ -26,7 +26,7 @@ import { GearToggleService } from 'src/app/core/services/gear-toggle.service';
 })
 export class OpenCloseComponent implements OnInit {
 
-  isOpen: boolean;
+  isOpen = false;
 
   constructor(private gearToggle: GearToggleService) {}
 
