@@ -6,9 +6,10 @@ import { CommonModule } from '@angular/common';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { BugDashboardComponent } from './bug-dashboard/bug-dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { NewBugComponent } from './new-bug/new-bug.component';
 
 @NgModule({
-  declarations: [BugDashboardComponent, HomeComponent],
+  declarations: [BugDashboardComponent, HomeComponent, NewBugComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,
@@ -16,7 +17,9 @@ import { HomeComponent } from './home/home.component';
     SharedModule
   ],
   exports: [
-    HomeComponent
+    BugDashboardComponent,
+    HomeComponent,
+    NewBugComponent
   ]
 })
 export class FeatureModule { }

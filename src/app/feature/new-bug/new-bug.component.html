@@ -1,0 +1,36 @@
+<div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 40px 10px">
+    <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput placeholder="Description"></textarea>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col-4">
+            <mat-form-field>
+              <mat-select placeholder="Priority">
+                <mat-option *ngFor="let value of Priority" value="value">{{value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-4">
+            <mat-form-field>
+                <mat-select placeholder="Reporter">
+                  <mat-option *ngFor="let value of Reporter" value="value">{{value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-4">
+            <mat-form-field>
+                <mat-select placeholder="Status">
+                  <mat-option *ngFor="let value of Status" value="value">{{value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+</div>
