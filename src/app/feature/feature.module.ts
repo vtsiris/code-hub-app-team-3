@@ -1,4 +1,4 @@
-import { MaterialModule } from './../core/services/material.module';
+import { MaterialModule } from '../core/modules/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
