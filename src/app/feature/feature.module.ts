@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { MaterialModule } from '../core/modules/material.module';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,8 @@ import { NewBugComponent } from './new-bug/new-bug.component';
     CommonModule,
     FeatureRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     BugDashboardComponent,

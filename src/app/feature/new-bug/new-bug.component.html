@@ -1,38 +1,54 @@
-<form>
-<div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 40px 10px">
+<form [formGroup]="myForm" (submit)="formSubmit(myForm)">
+<div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 55px 10px">
     <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Title">
-        </mat-form-field>
 
-        <mat-form-field>
-          <textarea matInput placeholder="Description"></textarea>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="titleFormControl.hasError('required')">
+          * Title is Required
+        </mat-error>
+      </mat-form-field>
 
-        <div class="row">
-          <div class="col-4">
-            <mat-form-field>
-              <mat-select placeholder="Priority">
-                <mat-option *ngFor="let value of Priority" value="value">{{value}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-4">
-            <mat-form-field>
-                <mat-select placeholder="Reporter">
-                  <mat-option *ngFor="let value of Reporter" value="value">{{value}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-          <div class="col-4">
-            <mat-form-field>
-                <mat-select placeholder="Status">
-                  <mat-option *ngFor="let value of Status" value="value">{{value}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
+      <mat-form-field>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <mat-error *ngIf="descriptionFormControl.hasError('required')">
+            * Description is Required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field>
+            <mat-select placeholder="Priority" formControlName="priority">
+              <mat-option *ngFor="let value of Priority" [value]="value.value">{{value.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="priorityFormControl.hasError('required')">
+                * Priority is Required
+            </mat-error>
+          </mat-form-field>
         </div>
-
+        <div class="col-4">
+          <mat-form-field>
+            <mat-select placeholder="Reporter" formControlName="reporter">
+              <mat-option *ngFor="let value of Reporter" [value]="value">{{value}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="reporterFormControl.hasError('required')">
+                * Reporter is Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field>
+            <mat-select placeholder="Status" formControlName="status">
+              <mat-option *ngFor="let value of Status" [value]="value">{{value}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="statusFormControl.hasError('required')">
+                * Status is Required
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
+      <button class="sbmt-button" type="submit" mat-raised-button>Submit</button>
+  </div>
   </form>

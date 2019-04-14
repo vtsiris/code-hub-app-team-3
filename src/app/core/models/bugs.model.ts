@@ -1,13 +1,13 @@
 import { Comment } from './comments.models';
 
 export interface Bug {
- id: string;
+ id?: string;
  title: string;
  description: string;
  priority: number;
  reporter: string;
  status: string;
- updatedAt: string;
- createdAt: string;
- comments: Array<Comment>;
+ updatedAt?: string;
+ createdAt?: string;
+ comments?: Array<Comment>;
  }
