@@ -2,7 +2,7 @@ import { Bug } from 'src/app/core/models/bugs.model';
 import { ApiServiceService } from './../../core/services/api-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-bug',
@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class NewBugComponent implements OnInit {
 
   myForm: FormGroup;
-
+  currentUrl: string;
+  bug: Bug;
   Priority = [
     {name: 'Minor', value: 1},
     {name: 'Major', value: 2},
@@ -35,10 +36,17 @@ export class NewBugComponent implements OnInit {
   statusFormControl = new FormControl('', []);
 
 
-  constructor(private api: ApiServiceService, private router: Router) {
+  constructor(private api: ApiServiceService, private router: Router,  private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.url.subscribe(url => this.currentUrl = url[0].path);
+    if (this.currentUrl === 'editbug') {
+      this.route.paramMap.subscribe(params =>
+        this.api.getBug(params.get('id'))
+        .subscribe( bug => { this.bug = bug; })
+        );
+    }
     this.myForm = new FormGroup({
       title: this.titleFormControl,
       description: this.descriptionFormControl,
@@ -62,7 +70,12 @@ export class NewBugComponent implements OnInit {
      status: myform.value.status
     };
     if (myform.valid) {
-      this.api.postBug(bug).subscribe( () => this.router.navigate(['/dashboard']));
+      if (this.currentUrl === 'newbug') {
+        this.api.postBug(bug).subscribe( () => this.router.navigate(['/dashboard']));
+      } else if (this.currentUrl === 'editbug') {
+        bug.id = this.bug.id;
+        this.api.editBug(bug).subscribe( () => this.router.navigate(['/dashboard']));
+      }
     }
   }
 

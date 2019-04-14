@@ -27,7 +27,7 @@ export class BugDashboardComponent implements OnInit {
   fetchInitialData(): void {
     this.route.data.subscribe((data) => {
       this.bugs = data.bugs;
-    })
+    });
   }
 
   sortTable(type: string): void {
