@@ -16,7 +16,7 @@ export class ApiServiceService {
     return this.http.get<Bug[]>(`${SERVER}`);
   }
 
-  sortBugs(type, order, pageNumber): Observable<Bug[]> {
+  sortBugs(type: string, order: string, pageNumber: number): Observable<Bug[]> {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Bug[]>(`${SERVER}?sort=${type},${order},desc&page=${pageNumber}&size=10&priority=1&reporter=QA&status=Done`);
   }

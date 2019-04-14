@@ -1,6 +1,8 @@
 import { ApiServiceService } from './../../core/services/api-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Bug } from 'src/app/core/models/bugs.model';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bug-dashboard',
@@ -16,19 +18,19 @@ export class BugDashboardComponent implements OnInit {
   order = 'asc';
   pagenumber = 0;
 
-  constructor(private api: ApiServiceService) { }
+  constructor(private api: ApiServiceService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.fetchInitialData();
   }
 
-  fetchInitialData() {
-    this.api.getBugs().subscribe(data => {
-      this.bugs = data;
-    });
+  fetchInitialData(): void {
+    this.route.data.subscribe((data) => {
+      this.bugs = data.bugs;
+    })
   }
 
-  sortTable(type) {
+  sortTable(type: string): void {
     switch (this.order) {
       case 'asc':
         this.order = 'desc';
