@@ -39,6 +39,10 @@ export class NewBugComponent implements OnInit {
         this.myForm.controls.status.setValidators(Validators.required);
         this.myForm.controls.status.updateValueAndValidity();
       }
+      else {
+        this.myForm.controls.status.clearValidators();
+        this.myForm.controls.status.updateValueAndValidity();
+      }
     });
   }
 
