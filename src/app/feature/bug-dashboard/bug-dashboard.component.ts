@@ -16,7 +16,10 @@ export class BugDashboardComponent implements OnInit {
     'title', 'priority', 'reporter', 'createdAt', 'status'
   ];
   order = 'asc';
-  pagenumber = 0;
+  pageNumber = 0;
+
+  isPreviousDisabled: boolean;
+  isNextDisabled: boolean;
 
   constructor(private api: ApiServiceService, private route: ActivatedRoute) { }
 
@@ -27,7 +30,16 @@ export class BugDashboardComponent implements OnInit {
   fetchInitialData(): void {
     this.route.data.subscribe((data) => {
       this.bugs = data.bugs;
-    })
+
+      if (this.bugs.length < 10) {
+        this.isNextDisabled = true;  // disable next button
+      }
+      else {
+        this.isNextDisabled = false; // enable next button
+      }
+
+      this.isPreviousDisabled = true;
+    });
   }
 
   sortTable(type: string): void {
@@ -42,8 +54,39 @@ export class BugDashboardComponent implements OnInit {
         this.order = 'asc';
         break;
     }
-    this.api.sortBugs(type, this.order, this.pagenumber).subscribe(data => {
+    this.api.sortBugs(type, this.order, this.pageNumber).subscribe(data => {
       this.bugs = data;
+    });
+  }
+
+  paginatePage(clickedNext: boolean) {
+    if (clickedNext) {
+      this.pageNumber++;  // increment page number
+    }
+    else {
+      this.pageNumber--;  // increment page number
+    }
+
+    if (clickedNext) {
+      this.isPreviousDisabled = false; // enable previous button
+    }
+    else if (!clickedNext && this.pageNumber > 0) {
+      this.isPreviousDisabled = false; // enable previous button
+      this.isNextDisabled = false;
+    }
+    else if (this.pageNumber === 0) {
+      this.isPreviousDisabled = true; // disable previous button
+      this.isNextDisabled = false;
+    }
+
+    this.api.sortBugs('title', this.order, this.pageNumber).subscribe(data => {
+      this.bugs = data;
+      if (this.bugs.length < 10) {
+        this.isNextDisabled = true;  // disable next button
+      }
+      else {
+        this.isNextDisabled = false; // enable next button
+      }
     });
   }
 
