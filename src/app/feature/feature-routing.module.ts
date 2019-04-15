@@ -8,7 +8,9 @@ import { BugsResolver } from './resolvers/bugs-resolver.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: BugDashboardComponent, resolve: { bugs: BugsResolver } },
-  { path: 'newbug', component: NewBugComponent }
+  { path: 'newbug', component: NewBugComponent },
+  { path: 'editbug/:id', component: NewBugComponent },
+
 ];
 
 @NgModule({

@@ -4,14 +4,14 @@
 
       <mat-form-field>
         <input matInput placeholder="Title" formControlName="title">
-        <mat-error *ngIf="myForm.controls.title.hasError('required')">
+        <mat-error *ngIf="myForm.get('title').hasError('required')">
           * Title is Required
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <textarea matInput placeholder="Description" formControlName="description"></textarea>
-        <mat-error *ngIf="myForm.controls.description.hasError('required')">
+        <mat-error *ngIf="myForm.get('description').hasError('required')">
           * Description is Required
         </mat-error>
       </mat-form-field>
@@ -22,7 +22,7 @@
             <mat-select placeholder="Priority" formControlName="priority">
               <mat-option *ngFor="let value of Priority" [value]="value.value">{{value.name}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="myForm.controls.priority.hasError('required')">
+            <mat-error *ngIf="myForm.get('priority').hasError('required')">
               * Priority is Required
             </mat-error>
           </mat-form-field>
@@ -32,7 +32,7 @@
             <mat-select placeholder="Reporter" formControlName="reporter">
               <mat-option *ngFor="let value of Reporter" [value]="value">{{value}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="myForm.controls.reporter.hasError('required')">
+            <mat-error *ngIf="myForm.get('reporter').hasError('required')">
               * Reporter is Required
             </mat-error>
           </mat-form-field>
@@ -42,7 +42,7 @@
             <mat-select placeholder="Status" formControlName="status">
               <mat-option *ngFor="let value of Status" [value]="value">{{value}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="myForm.controls.status.hasError('required')">
+            <mat-error *ngIf="myForm.get('status').hasError('required')">
               * Status is Required
             </mat-error>
           </mat-form-field>

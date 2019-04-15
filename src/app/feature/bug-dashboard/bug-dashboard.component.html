@@ -6,7 +6,9 @@
         <p style="display: inline" (click)="sortTable('title')">Title</p>
         <i class="material-icons title-plus-icon" [routerLink]="['/newbug']"> add_circle_outline</i>
       </th>
-      <td mat-cell *matCellDef="let bug"> {{bug.title}} </td>
+      <td mat-cell *matCellDef="let bug" class="title"> {{bug.title}}
+        <i class="material-icons edit-icon" style="font-size: 15px;" [routerLink]="['/editbug', bug.id]">edit</i>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="priority">

@@ -2,8 +2,6 @@ import { ApiServiceService } from './../../core/services/api-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Bug } from 'src/app/core/models/bugs.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-bug-dashboard',
   templateUrl: './bug-dashboard.component.html',
