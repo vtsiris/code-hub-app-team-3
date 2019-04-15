@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (submit)="formSubmit(myForm)">
+<form [formGroup]="myForm">
   <div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 55px 10px">
     <div class="example-container">
 
@@ -49,6 +49,7 @@
         </div>
       </div>
     </div>
-    <button class="sbmt-button" type="submit" mat-raised-button>Submit</button>
+    <button class="sbmt-button" type="button" (click)=" $event.preventDefault(); formSubmit(myForm)"
+      mat-raised-button>Submit</button>
   </div>
 </form>

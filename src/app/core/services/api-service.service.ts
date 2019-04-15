@@ -37,8 +37,4 @@ export class ApiServiceService {
     return this.http.delete(`${SERVER}/${bug.id}`);
   }
 
-  test() {
-    console.log('tested!');
-  }
-
 }
