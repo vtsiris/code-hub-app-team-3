@@ -7,10 +7,10 @@ import { CommonModule } from '@angular/common';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { BugDashboardComponent } from './bug-dashboard/bug-dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { NewBugComponent } from './new-bug/new-bug.component';
+import { BugHandlerComponent } from './bug-handler/bug-handler.component';
 
 @NgModule({
-  declarations: [BugDashboardComponent, HomeComponent, NewBugComponent],
+  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,
@@ -21,7 +21,7 @@ import { NewBugComponent } from './new-bug/new-bug.component';
   exports: [
     BugDashboardComponent,
     HomeComponent,
-    NewBugComponent
+    BugHandlerComponent
   ]
 })
 export class FeatureModule { }

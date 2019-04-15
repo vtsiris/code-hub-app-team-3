@@ -5,11 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-new-bug',
-  templateUrl: './new-bug.component.html',
-  styleUrls: ['./new-bug.component.scss']
+  selector: 'app-bug-handler',
+  templateUrl: './bug-handler.component.html',
+  styleUrls: ['./bug-handler.component.scss']
 })
-export class NewBugComponent implements OnInit {
+export class BugHandlerComponent implements OnInit {
 
   myForm: FormGroup;
   currentUrl: string;
@@ -54,8 +54,7 @@ export class NewBugComponent implements OnInit {
       if (value === 'QA') {
         this.myForm.controls.status.setValidators(Validators.required);
         this.myForm.controls.status.updateValueAndValidity();
-      }
-      else {
+      } else {
         this.myForm.controls.status.clearValidators();
         this.myForm.controls.status.updateValueAndValidity();
       }
@@ -63,13 +62,13 @@ export class NewBugComponent implements OnInit {
   }
 
   formSubmit(myform: FormGroup) {
-    let body = {
+    const body: Bug = {
       title: this.myForm.controls.title.value,
       description: this.myForm.controls.description.value,
       priority: this.myForm.controls.priority.value,
       reporter: this.myForm.controls.reporter.value,
       status: this.myForm.controls.status.value
-    }
+    };
     if (myform.valid) {
       if (this.currentUrl === 'newbug') {
         this.api.postBug(body).subscribe(() => this.router.navigate(['/dashboard']));
