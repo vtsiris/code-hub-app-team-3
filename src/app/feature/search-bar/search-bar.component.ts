@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiServiceService } from 'src/app/core/services/api-service.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +12,7 @@ export class SearchBarComponent implements OnInit {
   @Output() searchParams = new EventEmitter();
   searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api: ApiServiceService) { }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -30,22 +31,12 @@ export class SearchBarComponent implements OnInit {
       status: form.controls.reporter.value
     };
 
-    this.searchParams.emit(this.serialize(value));
+    this.searchParams.emit(this.api.serialize(value));
   }
 
   resetParams() {
     this.searchForm.patchValue({ 'title': '', 'priority': '', 'reporter': '', 'status': '' });
     this.searchWithParams(this.searchForm);
-  }
-
-  serialize(obj) {
-    const strQueryParams = [];
-    for (const item in obj) {
-      if (obj.hasOwnProperty(item)) {
-        strQueryParams.push(encodeURIComponent(item) + '=' + encodeURIComponent(obj[item]));
-      }
-    }
-    return strQueryParams.join('&');
   }
 
 }

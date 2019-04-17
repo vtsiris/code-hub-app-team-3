@@ -37,4 +37,14 @@ export class ApiServiceService {
     return this.http.delete(`${SERVER}/${bug.id}`);
   }
 
+  serialize(obj) {
+    const strQueryParams = [];
+    for (const item in obj) {
+      if (obj.hasOwnProperty(item)) {
+        strQueryParams.push(encodeURIComponent(item) + '=' + encodeURIComponent(obj[item]));
+      }
+    }
+    return strQueryParams.join('&');
+  }
+
 }
