@@ -1,8 +1,26 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceService } from 'src/app/core/services/api-service.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 @Component({
   selector: 'app-search-bar',
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        opacity: 1,
+      })),
+      state('closed', style({
+        opacity: 0,
+      })),
+      transition('open => closed', [
+        animate('0.5s')
+      ]),
+      transition('closed => open', [
+        animate('1.5s')
+      ]),
+    ]),
+  ],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
@@ -10,6 +28,7 @@ export class SearchBarComponent implements OnInit {
 
   @Output() searchParams = new EventEmitter();
   searchForm: FormGroup;
+  showClearBtn = false;
 
   constructor(private fb: FormBuilder, private api: ApiServiceService) { }
 
@@ -31,11 +50,13 @@ export class SearchBarComponent implements OnInit {
     };
 
     this.searchParams.emit(this.api.serialize(value));
+    this.showClearBtn = true;
   }
 
   resetParams() {
     this.searchForm.patchValue({ 'title': '', 'priority': '', 'reporter': '', 'status': '' });
     this.searchWithParams(this.searchForm);
+    this.showClearBtn = false;
   }
 
 }

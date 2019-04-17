@@ -73,7 +73,7 @@ export class BugHandlerComponent implements OnInit {
       priority: myform.controls.priority.value,
       reporter: myform.controls.reporter.value,
       status: myform.controls.status.value
-    }
+    };
     if (myform.valid) {
       if (this.currentUrl === 'newbug') {
         this.api.postBug(body).subscribe(() => this.router.navigate(['/dashboard']));
@@ -89,6 +89,6 @@ export class BugHandlerComponent implements OnInit {
   deleteBug() {
     this.api.deleteBug(this.editBugId).subscribe(() => {
       this.router.navigate(['/dashboard']);
-    })
+    });
   }
 }

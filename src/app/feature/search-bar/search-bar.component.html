@@ -1,7 +1,7 @@
-<form class="form-inline" [formGroup]="searchForm" (submit)="searchWithParams(searchForm)">
+<form class="form-inline" [formGroup]="searchForm">
   <div class="row">
     <div class="col">
-      <h6>Search by:</h6>
+      <h6 class="search-text">Search by:</h6>
     </div>
     <div class="col">
       <mat-form-field>
@@ -23,15 +23,7 @@
         <input matInput placeholder="Status" formControlName="status">
       </mat-form-field>
     </div>
-    <div class="col">
-      <button mat-raised-button title="Submit" type="submit" class="btn btn-primary mb-2">
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-    <div class="col">
-      <button mat-raised-button color="accent" title="Reset" type="button" (click)="resetParams()">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </div>
+        <mat-icon class="search-button" (click)="searchWithParams(searchForm)">search</mat-icon>
+        <mat-icon [@openClose]="showClearBtn ? 'open' : 'closed'" class="clear-button" (click)="resetParams()">clear</mat-icon>
   </div>
 </form>
