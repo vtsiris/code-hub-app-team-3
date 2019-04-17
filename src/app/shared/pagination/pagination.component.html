@@ -1,0 +1,15 @@
+<mat-card style="margin-top:2em;">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-info" mat-raised-button [disabled]="isPreviousDisabled" (click)="_paginatePage(false)">
+        &lt; Previous Page</button> </div>
+    <div class="col text-center">
+      <em>Current Page: <br>{{pageNumber+1}}</em>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-info" mat-raised-button [disabled]="isNextDisabled" style="float:right;"
+        (click)="_paginatePage(true)">Next
+        Page &gt; </button>
+    </div>
+  </div>
+</mat-card>

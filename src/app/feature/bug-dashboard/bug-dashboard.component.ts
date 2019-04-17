@@ -31,8 +31,7 @@ export class BugDashboardComponent implements OnInit {
 
       if (this.bugs.length < 10) {
         this.isNextDisabled = true;  // disable next button
-      }
-      else {
+      } else {
         this.isNextDisabled = false; // enable next button
       }
 
@@ -60,19 +59,16 @@ export class BugDashboardComponent implements OnInit {
   paginatePage(clickedNext: boolean) {
     if (clickedNext) {
       this.pageNumber++;  // increment page number
-    }
-    else {
+    } else {
       this.pageNumber--;  // increment page number
     }
 
     if (clickedNext) {
       this.isPreviousDisabled = false; // enable previous button
-    }
-    else if (!clickedNext && this.pageNumber > 0) {
+    } else if (!clickedNext && this.pageNumber > 0) {
       this.isPreviousDisabled = false; // enable previous button
       this.isNextDisabled = false;
-    }
-    else if (this.pageNumber === 0) {
+    } else if (this.pageNumber === 0) {
       this.isPreviousDisabled = true; // disable previous button
       this.isNextDisabled = false;
     }
@@ -81,8 +77,7 @@ export class BugDashboardComponent implements OnInit {
       this.bugs = data;
       if (this.bugs.length < 10) {
         this.isNextDisabled = true;  // disable next button
-      }
-      else {
+      } else {
         this.isNextDisabled = false; // enable next button
       }
     });

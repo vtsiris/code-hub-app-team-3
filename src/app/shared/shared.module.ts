@@ -6,13 +6,15 @@ import { GearComponent } from './gear/gear.component';
 import { RouterModule } from '@angular/router';
 import { OpenCloseComponent } from './open-close/open-close.component';
 import { MenuComponent } from './navbar/menu/menu.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     GearComponent,
     OpenCloseComponent,
-    MenuComponent],
+    MenuComponent,
+    PaginationComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -21,6 +23,7 @@ import { MenuComponent } from './navbar/menu/menu.component';
   exports: [
     NavbarComponent,
     GearComponent,
-    OpenCloseComponent]
+    OpenCloseComponent,
+    PaginationComponent]
 })
 export class SharedModule { }

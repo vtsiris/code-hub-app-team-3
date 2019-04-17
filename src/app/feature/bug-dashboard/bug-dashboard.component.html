@@ -37,19 +37,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-card style="margin-top:2em;">
-    <div class="row">
-      <div class="col">
-        <button color="accent" mat-raised-button [disabled]="isPreviousDisabled" (click)="paginatePage(false)">
-          &lt; Previous Page</button> </div>
-      <div class="col text-center">
-        <em>Current Page: <br>{{pageNumber+1}}</em>
-      </div>
-      <div class="col">
-        <button color="accent" mat-raised-button [disabled]="isNextDisabled" style="float:right"
-          (click)="paginatePage(true)">Next
-          Page &gt; </button>
-      </div>
-    </div>
-  </mat-card>
+  <app-pagination
+  [isNextDisabled]="isNextDisabled"
+  [isPreviousDisabled]="isPreviousDisabled"
+  [pageNumber]="pageNumber"
+  (paginatePage)="paginatePage($event)">
+</app-pagination>
 </div>
