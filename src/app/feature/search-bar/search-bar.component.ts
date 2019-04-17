@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceService } from 'src/app/core/services/api-service.service';
-
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -28,7 +27,7 @@ export class SearchBarComponent implements OnInit {
       title: form.controls.title.value,
       priority: form.controls.priority.value,
       reporter: form.controls.reporter.value,
-      status: form.controls.reporter.value
+      status: form.controls.status.value
     };
 
     this.searchParams.emit(this.api.serialize(value));
