@@ -49,6 +49,9 @@
         </div>
       </div>
     </div>
+    <button *ngIf="editBugId" color="accent" type="button" mat-raised-button (click)="deleteBug()">
+      <mat-icon>delete</mat-icon>
+    </button>
     <button class="sbmt-button" type="submit" mat-raised-button>Submit</button>
   </div>
 </form>

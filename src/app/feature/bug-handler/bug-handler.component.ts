@@ -3,6 +3,7 @@ import { ApiServiceService } from '../../core/services/api-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-bug-handler',
@@ -25,7 +26,11 @@ export class BugHandlerComponent implements OnInit {
 
   Status: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
 
-  constructor(private api: ApiServiceService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private api: ApiServiceService,
+    public dialog: MatDialog,
+    private router: Router,
+    private fb: FormBuilder,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -81,4 +86,9 @@ export class BugHandlerComponent implements OnInit {
     }
   }
 
+  deleteBug() {
+    this.api.deleteBug(this.editBugId).subscribe(() => {
+      this.router.navigate(['/dashboard']);
+    })
+  }
 }

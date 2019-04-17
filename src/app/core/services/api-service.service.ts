@@ -33,8 +33,8 @@ export class ApiServiceService {
     return this.http.put<Bug>(`${SERVER}/${bug.id}`, bug);
   }
 
-  deleteBug(bug: Bug) {
-    return this.http.delete(`${SERVER}/${bug.id}`);
+  deleteBug(bug: string) {
+    return this.http.delete(`${SERVER}/${bug}`);
   }
 
   serialize(obj) {
