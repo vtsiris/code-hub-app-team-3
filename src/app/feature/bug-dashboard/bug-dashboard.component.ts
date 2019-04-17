@@ -89,7 +89,8 @@ export class BugDashboardComponent implements OnInit {
   }
 
   searchWithParamsProvided(queryStringParams) {
-    this.api.sortBugs('title', this.order, 0, queryStringParams).subscribe(data => {
+    this.pageNumber = 0;
+    this.api.sortBugs('title', this.order, this.pageNumber, queryStringParams).subscribe(data => {
       console.log(data);
       this.bugs = data;
     });
