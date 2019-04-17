@@ -62,18 +62,18 @@ export class BugHandlerComponent implements OnInit {
   }
 
   formSubmit(myform: FormGroup) {
-    const body: Bug = {
-      title: this.myForm.controls.title.value,
-      description: this.myForm.controls.description.value,
-      priority: this.myForm.controls.priority.value,
-      reporter: this.myForm.controls.reporter.value,
-      status: this.myForm.controls.status.value
-    };
+    let body = {
+      title: myform.controls.title.value,
+      description: myform.controls.description.value,
+      priority: myform.controls.priority.value,
+      reporter: myform.controls.reporter.value,
+      status: myform.controls.status.value
+    }
     if (myform.valid) {
       if (this.currentUrl === 'newbug') {
         this.api.postBug(body).subscribe(() => this.router.navigate(['/dashboard']));
       } else if (this.currentUrl === 'editbug') {
-        body.id = this.editBugId;
+        body['id'] = this.editBugId;
         this.api.editBug(body).subscribe(() => {
           this.router.navigate(['/dashboard']);
         });

@@ -1,4 +1,7 @@
 <div class="container mt-5">
+  <mat-card style="margin: 2em 0;">
+    <app-search-bar (searchParams)="searchWithParamsProvided($event)"></app-search-bar>
+  </mat-card>
   <table mat-table [dataSource]="bugs" class="mat-elevation-z8">
 
     <ng-container matColumnDef="title">

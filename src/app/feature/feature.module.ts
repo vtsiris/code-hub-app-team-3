@@ -8,9 +8,10 @@ import { FeatureRoutingModule } from './feature-routing.module';
 import { BugDashboardComponent } from './bug-dashboard/bug-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { BugHandlerComponent } from './bug-handler/bug-handler.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
-  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent],
+  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent, SearchBarComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,

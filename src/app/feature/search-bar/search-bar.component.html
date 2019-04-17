@@ -1,0 +1,37 @@
+<form class="form-inline" [formGroup]="searchForm" (submit)="searchWithParams(searchForm)">
+  <div class="row">
+    <div class="col">
+      <h6>Search by:</h6>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="Priority" formControlName="priority">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="Reporter" formControlName="reporter">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="Status" formControlName="status">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button mat-raised-button title="Submit" type="submit" class="btn btn-primary mb-2">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <div class="col">
+      <button mat-raised-button title="Reset" type="button" class="btn btn-primary mb-2" (click)="resetParams()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

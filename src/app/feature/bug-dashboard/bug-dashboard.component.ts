@@ -52,7 +52,7 @@ export class BugDashboardComponent implements OnInit {
         this.order = 'asc';
         break;
     }
-    this.api.sortBugs(type, this.order, this.pageNumber).subscribe(data => {
+    this.api.sortBugs(type, this.order, this.pageNumber, '').subscribe(data => {
       this.bugs = data;
     });
   }
@@ -77,7 +77,7 @@ export class BugDashboardComponent implements OnInit {
       this.isNextDisabled = false;
     }
 
-    this.api.sortBugs('title', this.order, this.pageNumber).subscribe(data => {
+    this.api.sortBugs('title', this.order, this.pageNumber, '').subscribe(data => {
       this.bugs = data;
       if (this.bugs.length < 10) {
         this.isNextDisabled = true;  // disable next button
@@ -85,6 +85,13 @@ export class BugDashboardComponent implements OnInit {
       else {
         this.isNextDisabled = false; // enable next button
       }
+    });
+  }
+
+  searchWithParamsProvided(queryStringParams) {
+    this.api.sortBugs('title', this.order, 0, queryStringParams).subscribe(data => {
+      console.log(data);
+      this.bugs = data;
     });
   }
 

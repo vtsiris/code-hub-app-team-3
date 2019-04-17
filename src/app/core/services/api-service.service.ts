@@ -20,9 +20,9 @@ export class ApiServiceService {
     return this.http.get<Bug>(`${SERVER}/${id}`);
   }
 
-  sortBugs(type: string, order: string, pageNumber: number): Observable<Bug[]> {
+  sortBugs(type: string, order: string, pageNumber: number, queryStringParams: string): Observable<Bug[]> {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<Bug[]>(`${SERVER}?sort=${type},${order},desc&page=${pageNumber}&size=10&priority=1&reporter=QA&status=Done`);
+    return this.http.get<Bug[]>(`${SERVER}?sort=${type},${order},desc&page=${pageNumber}&size=10&${queryStringParams}`);
   }
 
   postBug(bug: Bug): Observable<Bug> {
