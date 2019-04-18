@@ -1,7 +1,8 @@
 import { Bug } from 'src/app/core/models/bugs.model';
+import { Comment } from '../../core/models/comments.models';
 import { ApiServiceService } from '../../core/services/api-service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormArrayName } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -39,19 +40,17 @@ export class BugHandlerComponent implements OnInit {
       description: ['', [Validators.required]],
       priority: ['', [Validators.required]],
       reporter: ['', [Validators.required]],
-      status: ['', []]
+      status: ['', []],
+      comments: this.fb.array([this.populateComments()])
     });
+
     this.route.url.subscribe(url => this.currentUrl = url[0].path);
     if (this.currentUrl === 'editbug') {
       this.route.paramMap.subscribe(params => {
         this.editBugId = params.get('id');
         this.api.getBug(this.editBugId)
           .subscribe(bug => {
-            this.myForm.controls.title.setValue(bug.title);
-            this.myForm.controls.description.setValue(bug.description);
-            this.myForm.controls.priority.setValue(bug.priority);
-            this.myForm.controls.reporter.setValue(bug.reporter);
-            this.myForm.controls.status.setValue(bug.status);
+            this.editBug(bug);
           });
       });
     }
@@ -66,14 +65,66 @@ export class BugHandlerComponent implements OnInit {
     });
   }
 
+  editBug(bug: Bug) {
+    this.myForm.patchValue({
+      title: bug.title,
+      description: bug.description,
+      priority: bug.priority,
+      reporter: bug.reporter,
+      status: bug.status
+    });
+
+    this.myForm.setControl('comments', this.setExistingComments(bug['comments']));
+  }
+
+  setExistingComments(comments: Array<Comment>): FormArray {
+    const commentsArray = new FormArray([]);
+    comments.forEach((c) => {
+      commentsArray.push(
+        this.fb.group({
+          description: [c['description'], []],
+          reporter: [c['reporter'], []],
+        }));
+    });
+    return commentsArray;
+  }
+
+  populateComments(): FormGroup {
+    return this.fb.group({
+      description: ['', []],
+      reporter: ['', []]
+    });
+  }
+
+  get commentsArray(): FormArray {
+    return <FormArray>this.myForm.controls.comments;
+  }
+
+  addCommentsToArray() {
+    this.commentsArray.push(this.populateComments());
+  }
+
+  removeCommentsFromArray(index: number) {
+    this.commentsArray.removeAt(index);
+  }
+
   formSubmit(myform: FormGroup) {
-    let body = {
+    let commentsArray = [];
+    myform.controls.comments['controls'].forEach(element => {
+      commentsArray.push({
+        description: element.controls.description.value,
+        reporter: element.controls.reporter.value
+      })
+    });
+    const body = {
       title: myform.controls.title.value,
       description: myform.controls.description.value,
       priority: myform.controls.priority.value,
       reporter: myform.controls.reporter.value,
-      status: myform.controls.status.value
+      status: myform.controls.status.value,
+      comments: commentsArray
     };
+    commentsArray = []; // reset the temporary array
     if (myform.valid) {
       if (this.currentUrl === 'newbug') {
         this.api.postBug(body).subscribe(() => this.router.navigate(['/dashboard']));
