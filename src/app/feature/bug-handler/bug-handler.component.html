@@ -1,106 +1,62 @@
 <form [formGroup]="myForm" (submit)="formSubmit(myForm)">
-  <div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 55px 10px">
-    <!-- details section -->
-    <mat-card style="margin-bottom:2em;">
-      <div class="example-container">
-        <h3>Bug Details</h3><br>
-        <mat-form-field>
-          <input matInput placeholder="Title" formControlName="title">
-          <mat-error *ngIf="myForm.get('title').hasError('required')">
-            * Title is Required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea matInput placeholder="Description" formControlName="description"></textarea>
-          <mat-error *ngIf="myForm.get('description').hasError('required')">
-            * Description is Required
-          </mat-error>
-        </mat-form-field>
-        <div class="row">
-          <div class="col">
-            <mat-form-field>
-              <mat-select placeholder="Priority" formControlName="priority">
-                <mat-option *ngFor="let value of Priority" [value]="value.value">{{value.name}}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="myForm.get('priority').hasError('required')">
-                * Priority is Required
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field>
-              <mat-select placeholder="Reporter" formControlName="reporter">
-                <mat-option *ngFor="let value of Reporter" [value]="value">{{value}}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="myForm.get('reporter').hasError('required')">
-                * Reporter is Required
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field>
-              <mat-select placeholder="Status" formControlName="status">
-                <mat-option *ngFor="let value of Status" [value]="value">{{value}}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="myForm.get('status').hasError('required')">
-                * Status is Required
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col" *ngIf="editBugId">
-            <button color="accent" type="button" mat-button (click)="deleteBug()" matTooltip="Delete Bug">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-card>
-    <!-- comments section -->
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h4>Comments</h4>
-          </mat-panel-title>
-          <mat-panel-description></mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="row">
-          <div class="col-10">
-            <div class="row" formArrayName="comments" *ngFor="let group of commentsArray.controls; let i = index;">
-              <div class="col-8" [formGroupName]="i">
-                <div class="row">
-                  <div class="col">
-                    <input matInput placeholder="Reporter" formControlName="reporter">
-                  </div>
-                  <div class="col">
-                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <mat-icon color="accent" matTooltip="Remove Comment" (click)="removeCommentsFromArray(i)">clear
-                </mat-icon>
-              </div>
+    <div class="container mt-5 mat-elevation-z8" style="padding: 20px 10px 55px 10px">
+        <div class="example-container">
+          <h3>Bug Details</h3><br>
+          <mat-form-field>
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="myForm.get('title').hasError('required')">
+              * Title is Required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="myForm.get('description').hasError('required')">
+              * Description is Required
+            </mat-error>
+          </mat-form-field>
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-select placeholder="Priority" formControlName="priority">
+                  <mat-option *ngFor="let value of Priority" [value]="value.value">{{value.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="myForm.get('priority').hasError('required')">
+                  * Priority is Required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field>
+                <mat-select placeholder="Reporter" formControlName="reporter">
+                  <mat-option *ngFor="let value of Reporter" [value]="value">{{value}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="myForm.get('reporter').hasError('required')">
+                  * Reporter is Required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field>
+                <mat-select placeholder="Status" formControlName="status">
+                  <mat-option *ngFor="let value of Status" [value]="value">{{value}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="myForm.get('status').hasError('required')">
+                  * Status is Required
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
-          <div class="col-2 text-right">
-            <mat-icon color="primary" matTooltip="Add Comment" (click)="addCommentsToArray()">add_circle</mat-icon>
-          </div>
         </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <!-- buttons section -->
-    <div class="row" style="margin-top:2em;">
-      <div class="col">
-        <button color="primary" type="button" mat-button (click)="backToDashboard()" matTooltip="Back">
-          <mat-icon>arrow_back_ios</mat-icon>
-        </button>
-      </div>
-      <div class="col">
-        <button class="sbmt-button" color="primary" type="submit" mat-button matTooltip="Submit">
-          <mat-icon>send</mat-icon>
-        </button>
-      </div>
+     <app-bug-comments  *ngIf="myForm.value.reporter !== 'QA'" [parrentForm]="myForm" ></app-bug-comments>
+
+    <button *ngIf="editBugId" class="btn btn-outline-danger mt-2" type="button" mat-raised-button (click)="deleteBug()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button class="btn btn-outline-success sbmt-button mt-2" type="submit" mat-raised-button>Submit</button>
     </div>
-  </div>
-</form>
+  </form>
+
+
+<button color="primary" type="button" mat-button (click)="backToDashboard()" matTooltip="Back">
+  <mat-icon>arrow_back_ios</mat-icon>
+</button>

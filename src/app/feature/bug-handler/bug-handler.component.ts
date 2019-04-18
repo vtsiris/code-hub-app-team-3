@@ -43,7 +43,6 @@ export class BugHandlerComponent implements OnInit {
       status: ['', []],
       comments: this.fb.array([this.populateComments()])
     });
-
     this.route.url.subscribe(url => this.currentUrl = url[0].path);
     if (this.currentUrl === 'editbug') {
       this.route.paramMap.subscribe(params => {
@@ -73,48 +72,61 @@ export class BugHandlerComponent implements OnInit {
       reporter: bug.reporter,
       status: bug.status
     });
-
     this.myForm.setControl('comments', this.setExistingComments(bug['comments']));
   }
 
   setExistingComments(comments: Array<Comment>): FormArray {
     const commentsArray = new FormArray([]);
-    comments.forEach((c) => {
+    if (comments !== null ) {
+      comments.forEach((c) => {
+        commentsArray.push(
+          this.fb.group({
+            reporter: [c['reporter'], []],
+            description: [c['description'], []],
+          }));
+      },
       commentsArray.push(
         this.fb.group({
-          description: [c['description'], []],
-          reporter: [c['reporter'], []],
+          reporter: ['', []],
+          description: ['', []],
+        }))
+      );
+    } else {
+      commentsArray.push(
+        this.fb.group({
+          reporter: ['', []],
+          description: ['', []],
         }));
-    });
+    }
     return commentsArray;
   }
 
   populateComments(): FormGroup {
     return this.fb.group({
+      reporter: ['', []],
       description: ['', []],
-      reporter: ['', []]
     });
   }
 
-  get commentsArray(): FormArray {
-    return <FormArray>this.myForm.controls.comments;
-  }
+  // get commentsArray(): FormArray {
+  //   return <FormArray>this.myForm.controls.comments;
+  // }
 
-  addCommentsToArray() {
-    this.commentsArray.push(this.populateComments());
-  }
+  // addCommentsToArray() {
+  //   this.commentsArray.push(this.populateComments());
+  // }
 
-  removeCommentsFromArray(index: number) {
-    this.commentsArray.removeAt(index);
-  }
+  // removeCommentsFromArray(index: number) {
+  //   this.commentsArray.removeAt(index);
+  // }
 
   formSubmit(myform: FormGroup) {
     let commentsArray = [];
     myform.controls.comments['controls'].forEach(element => {
       commentsArray.push({
+        reporter: element.controls.reporter.value,
         description: element.controls.description.value,
-        reporter: element.controls.reporter.value
-      })
+      });
     });
     const body = {
       title: myform.controls.title.value,

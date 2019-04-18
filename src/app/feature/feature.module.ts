@@ -10,9 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { BugHandlerComponent } from './bug-handler/bug-handler.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PriorityPipePipe } from './pipes/priority-pipe.pipe';
+import { BugCommentsComponent } from './bug-handler/bug-comments/bug-comments.component';
 
 @NgModule({
-  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent, SearchBarComponent, PriorityPipePipe],
+  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent, SearchBarComponent, PriorityPipePipe, BugCommentsComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,

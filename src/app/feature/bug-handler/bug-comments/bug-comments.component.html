@@ -1,0 +1,35 @@
+    <!-- <div class="row">
+      <div class="col-10">
+        <div class="row" formArrayName="comments" *ngFor="let group of commentsArray.controls; let i = index;">
+          <div class="col-8" [formGroupName]="i">
+            <div class="row">
+              <div class="col">
+                <input matInput placeholder="Reporter" formControlName="reporter">
+              </div>
+              <div class="col">
+                <textarea matInput placeholder="Description" formControlName="description"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <mat-icon color="accent" matTooltip="Remove Comment" (click)="removeCommentsFromArray(i)">clear
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 text-right">
+        <mat-icon color="primary" matTooltip="Add Comment" (click)="addCommentsToArray()">add_circle</mat-icon>
+      </div>
+    </div> -->
+<form [formGroup]="parrentForm">
+  <div formArrayName="comments" style="margin: -20px 0 0 0">
+    <div class="example-container" >
+    <mat-form-field style="width:16%; margin-top: 30px;">
+        <input matInput placeholder="Reporter" formControlName="reporter">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Comments" formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
