@@ -86,6 +86,10 @@ export class BugHandlerComponent implements OnInit {
     }
   }
 
+  backToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
+
   deleteBug() {
     this.api.deleteBug(this.editBugId).subscribe(() => {
       this.router.navigate(['/dashboard']);

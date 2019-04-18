@@ -30,6 +30,16 @@ export class SearchBarComponent implements OnInit {
   searchForm: FormGroup;
   showClearBtn = false;
 
+  Priority = [
+    { name: 'Minor', value: 1 },
+    { name: 'Major', value: 2 },
+    { name: 'Critical', value: 3 }
+  ];
+
+  Reporter: Array<string> = ['QA', 'PO', 'DEV'];
+
+  Status: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
+
   constructor(private fb: FormBuilder, private api: ApiServiceService) { }
 
   ngOnInit() {

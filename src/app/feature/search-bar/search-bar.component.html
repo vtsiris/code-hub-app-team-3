@@ -10,20 +10,33 @@
     </div>
     <div class="col">
       <mat-form-field>
-        <input matInput placeholder="Priority" formControlName="priority">
+        <mat-select placeholder="Priority" formControlName="priority">
+          <mat-option *ngFor="let priority of Priority" [value]="priority.value">
+            {{priority.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col">
       <mat-form-field>
-        <input matInput placeholder="Reporter" formControlName="reporter">
+        <mat-select placeholder="Reporter" formControlName="reporter">
+          <mat-option *ngFor="let reporter of Reporter" [value]="reporter">
+            {{reporter}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col">
       <mat-form-field>
-        <input matInput placeholder="Status" formControlName="status">
+        <mat-select placeholder="Status" formControlName="status">
+          <mat-option *ngFor="let status of Status" [value]="status">
+            {{status}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-        <mat-icon class="search-button" (click)="searchWithParams(searchForm)">search</mat-icon>
-        <mat-icon [@openClose]="showClearBtn ? 'open' : 'closed'" class="clear-button" (click)="resetParams()">clear</mat-icon>
+    <mat-icon class="search-button" (click)="searchWithParams(searchForm)">search</mat-icon>
+    <mat-icon [@openClose]="showClearBtn ? 'open' : 'closed'" class="clear-button" (click)="resetParams()">clear
+    </mat-icon>
   </div>
 </form>

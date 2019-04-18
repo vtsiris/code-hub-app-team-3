@@ -49,9 +49,22 @@
         </div>
       </div>
     </div>
-    <button *ngIf="editBugId" color="accent" type="button" mat-raised-button (click)="deleteBug()">
-      <mat-icon>delete</mat-icon>
-    </button>
-    <button class="sbmt-button" type="submit" mat-raised-button>Submit</button>
+    <div class="row">
+      <div class="col" *ngIf="editBugId">
+        <button color="accent" type="button" mat-raised-button (click)="deleteBug()" title="delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" mat-raised-button (click)="backToDashboard()" title="Back">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        <button type="submit" mat-raised-button title="submit">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 </form>
