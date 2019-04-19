@@ -15,16 +15,20 @@ export class BugCommentsComponent implements OnInit {
   constructor( ) { }
 
   ngOnInit() {
-    let reporter: string;
-    let description: string;
     this.parrentForm.valueChanges.subscribe(form => {
-      reporter = form.comments[0].reporter;
-      description = form.comments[0].description;
+      const reporter = form.comments[0].reporter;
+      const description = form.comments[0].description;
+      const commentArray = [{reporter, description}];
+      this._getComments(commentArray);
     });
   }
 
   get commentsArray(): FormArray {
     return <FormArray>this.parrentForm.controls.comments;
+  }
+
+  _getComments(commentArray) {
+    this.getComments.emit(commentArray);
   }
 
 }

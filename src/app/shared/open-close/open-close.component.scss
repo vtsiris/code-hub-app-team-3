@@ -10,6 +10,17 @@
   font-weight: bold;
   font-size: 20px;
 }
+.arrow-right {
+  position: absolute;
+    right: -8px;
+    top: 7px;
+}
+
+.add-image {
+  position: absolute;
+  top: 8px;
+  left: 32px;
+}
 
 .left-image {
   position: absolute;
@@ -23,12 +34,16 @@
   left: 58%;
 }
 
-.left-image:hover p {
- display: block;
+.left-image:hover {
+  p {
+    display: block;
+  }
 }
 
 .right-image:hover p {
-  display: block;
+  p {
+    display: block;
+  }
 }
 
 p {

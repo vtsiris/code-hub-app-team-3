@@ -23,7 +23,7 @@
     </div> -->
 <form [formGroup]="parrentForm">
   <div formArrayName="comments" *ngFor="let group of commentsArray.controls; let i = index;" style="margin: -20px 0 0 0">
-    <div class="example-container" [formGroupName]="0">
+    <div class="example-container" [formGroupName]="i">
     <mat-form-field style="width:16%; margin-top: 30px;">
         <input matInput placeholder="Reporter" formControlName="reporter">
       </mat-form-field>

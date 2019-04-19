@@ -72,32 +72,37 @@ export class BugHandlerComponent implements OnInit {
       reporter: bug.reporter,
       status: bug.status
     });
-    this.myForm.setControl('comments', this.setExistingComments(bug['comments']));
+    this.myForm.setControl('comments', this.setEditComments(bug['comments']));
   }
 
-  setExistingComments(comments: Array<Comment>): FormArray {
+  setEditComments(comments: Array<Comment>): FormArray {
     const commentsArray = new FormArray([]);
-    if (comments !== null ) {
-      comments.forEach((c) => {
-        commentsArray.push(
+    // if (comments !== null ) {
+    //   comments.forEach((c) => {
+    //     commentsArray.push(
+    //       this.fb.group({
+    //         reporter: [c['reporter'], []],
+    //         description: [c['description'], []],
+    //       }));
+    //   },
+    //   commentsArray.push(
+    //     this.fb.group({
+    //       reporter: ['', []],
+    //       description: ['', []],
+    //     }))
+    //   );
+    // } else {
+    //   commentsArray.push(
+    //     this.fb.group({
+    //       reporter: ['', []],
+    //       description: ['', []],
+    //     }));
+    // }
+    commentsArray.push(
           this.fb.group({
-            reporter: [c['reporter'], []],
-            description: [c['description'], []],
+            reporter: ['', []],
+            description: ['', []],
           }));
-      },
-      commentsArray.push(
-        this.fb.group({
-          reporter: ['', []],
-          description: ['', []],
-        }))
-      );
-    } else {
-      commentsArray.push(
-        this.fb.group({
-          reporter: ['', []],
-          description: ['', []],
-        }));
-    }
     return commentsArray;
   }
 
@@ -108,13 +113,14 @@ export class BugHandlerComponent implements OnInit {
     });
   }
 
-  // get commentsArray(): FormArray {
-  //   return <FormArray>this.myForm.controls.comments;
-  // }
+  get commentsArray(): FormArray {
+    return <FormArray>this.myForm.controls.comments;
+  }
 
-  // addCommentsToArray() {
-  //   this.commentsArray.push(this.populateComments());
-  // }
+  addCommentsToArray(commentArray) {
+    // this.commentsArray.push(this.populateComments());
+    this.commentsArray[0] = commentArray;
+  }
 
   // removeCommentsFromArray(index: number) {
   //   this.commentsArray.removeAt(index);
@@ -136,7 +142,7 @@ export class BugHandlerComponent implements OnInit {
       status: myform.controls.status.value,
       comments: commentsArray
     };
-    commentsArray = []; // reset the temporary array
+    // commentsArray = []; // reset the temporary array
     if (myform.valid) {
       if (this.currentUrl === 'newbug') {
         this.api.postBug(body).subscribe(() => this.router.navigate(['/dashboard']));

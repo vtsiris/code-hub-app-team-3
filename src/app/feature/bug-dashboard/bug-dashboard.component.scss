@@ -23,8 +23,10 @@ th {
   display: none;
 }
 
-.title:hover .edit-icon {
-  display: inline;
-  cursor: pointer;
-  padding-left: 10px;
+.title:hover  {
+  .edit-icon {
+    display: inline;
+    cursor: pointer;
+    padding-left: 10px;
+  }
 }
