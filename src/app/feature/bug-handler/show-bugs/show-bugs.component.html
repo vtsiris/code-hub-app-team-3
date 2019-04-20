@@ -1,0 +1,26 @@
+
+<div class="container mt-5" *ngIf="existingComments"  style="padding: 20px 10px 55px 10px">
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Show Existing Comments
+        </mat-panel-title>
+        <mat-panel-description>
+         Ammount of Existing Comments: {{existingComments.length}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+<div class="row" *ngFor="let comment of existingComments">
+<div class="col-3">
+  Reporter Name:  {{comment.reporter}}
+</div>
+<div class="col-7">
+  Comment: {{comment.description}}
+</div>
+
+
+</div>
+
+    </mat-expansion-panel>
+</div>
+

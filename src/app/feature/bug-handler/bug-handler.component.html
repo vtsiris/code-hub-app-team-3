@@ -54,11 +54,13 @@
         </div>
      <app-bug-comments  *ngIf="myForm.value.reporter !== 'QA'" [parrentForm]="myForm" ></app-bug-comments>
 
-    <button *ngIf="editBugId" class="btn btn-outline-danger mt-2" type="button" mat-raised-button (click)="deleteBug()">
+    <button *ngIf="editBugId" class="btn btn-outline-danger mt-2" style="cursor: pointer" type="button" mat-raised-button (click)="deleteBug()">
       <mat-icon>delete</mat-icon>
     </button>
     <button class="btn btn-outline-success sbmt-button mt-2" type="submit" mat-raised-button>Submit</button>
     </div>
   </form>
+
+  <app-show-bugs [existingComments]="existingComments"></app-show-bugs>
 
 

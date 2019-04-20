@@ -1,5 +1,5 @@
 export interface Comment {
-  _id: string;
+  _id?: string;
  reporter: string;
  description: string;
  }
