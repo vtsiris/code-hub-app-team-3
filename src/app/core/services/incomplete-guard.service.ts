@@ -14,7 +14,7 @@ export class IncompleteGuardService implements CanDeactivate<BaseComponent>{
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot) {
 
-    if (!component.canDeactivate()) {
+    if (component.canDeactivate()) {
       return window.confirm('Are you sure you want leave the page? The data you entered are unsaved!');
     }
     return true;

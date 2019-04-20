@@ -13,9 +13,6 @@ import { Comment } from 'src/app/core/models/comments.models';
   styleUrls: ['./bug-handler.component.scss']
 })
 export class BugHandlerComponent implements OnInit, BaseComponent {
-  canDeactivate = () => {
-    return this.myForm.pristine;  // if changed have been made prompt user for confirmation
-  }
 
   myForm: FormGroup;
   currentUrl: string;
@@ -31,6 +28,10 @@ export class BugHandlerComponent implements OnInit, BaseComponent {
   Reporter: Array<string> = ['QA', 'PO', 'DEV'];
 
   Status: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
+
+  canDeactivate = () => {
+    return this.myForm.pristine;  // if changed have been made prompt user for confirmation
+  }
 
   constructor(private api: ApiServiceService,
     public dialog: MatDialog,

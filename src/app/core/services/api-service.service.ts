@@ -21,7 +21,6 @@ export class ApiServiceService {
   }
 
   sortBugs(type: string, order: string, pageNumber: number, queryStringParams: string): Observable<Bug[]> {
-    // tslint:disable-next-line:max-line-length
     return this.http.get<Bug[]>(`${SERVER}?sort=${type},${order},desc&page=${pageNumber}&size=10&${queryStringParams}`);
   }
 

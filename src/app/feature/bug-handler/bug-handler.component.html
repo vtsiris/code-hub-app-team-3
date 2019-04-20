@@ -6,7 +6,7 @@
           </h3>
           <br>
           <mat-form-field>
-            <input matInput placeholder="Title" formControlName="title">
+            <input matInput placeholder="Title" name="title" formControlName="title">
             <mat-error *ngIf="myForm.get('title').hasError('required')">
               * Title is Required
             </mat-error>

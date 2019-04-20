@@ -15,6 +15,7 @@ export class BugDashboardComponent implements OnInit {
   ];
   order = 'asc';
   pageNumber = 0;
+  totalPages = 0;
 
   isPreviousDisabled: boolean;
   isNextDisabled: boolean;
@@ -34,7 +35,6 @@ export class BugDashboardComponent implements OnInit {
       } else {
         this.isNextDisabled = false; // enable next button
       }
-
       this.isPreviousDisabled = true;
     });
   }
