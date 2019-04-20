@@ -1,0 +1,10 @@
+<form [formGroup]="commentsArray" style="margin: -20px 0 0 0">
+  <div class="example-container">
+    <mat-form-field style="width:16%; margin-top: 30px;">
+        <input matInput placeholder="Reporter" formControlName="reporter">
+      </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Comments" formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+</form>

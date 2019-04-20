@@ -12,9 +12,18 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PriorityPipePipe } from './pipes/priority-pipe.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from '../core/interceptors/httpconfig.interceptor';
+import { BugCommentsComponent } from './bug-handler/bug-comments/bug-comments.component';
+import { ShowBugsComponent } from './bug-handler/show-bugs/show-bugs.component';
 
 @NgModule({
-  declarations: [BugDashboardComponent, HomeComponent, BugHandlerComponent, SearchBarComponent, PriorityPipePipe],
+  declarations: [
+    BugDashboardComponent,
+    HomeComponent,
+    BugHandlerComponent,
+    SearchBarComponent,
+    PriorityPipePipe,
+    BugCommentsComponent,
+    ShowBugsComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,
