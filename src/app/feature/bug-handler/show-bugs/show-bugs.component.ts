@@ -9,6 +9,7 @@ import { FormArray } from '@angular/forms';
 export class ShowBugsComponent implements OnInit {
 
   @Input() existingComments;
+  displayedColumns = ['Reporter', 'Description'];
   ngOnInit() {
   }
 }

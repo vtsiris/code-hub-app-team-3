@@ -95,10 +95,15 @@ export class BugHandlerComponent implements OnInit, BaseComponent {
   formSubmit(myform: FormGroup) {
     // tslint:disable-next-line:max-line-length
     if ((this.myForm.controls.comments['controls'][0]['controls']['reporter'].value !== '') && (this.myForm.controls.comments['controls'][0]['controls']['description'].value !== '')) {
+
+      if (!this.existingComments) {
+        this.existingComments = [];
+      }
       this.existingComments.push({
-        reporter: this.myForm.controls.comments['controls'][0]['controls']['reporter'].value,
-        description: this.myForm.controls.comments['controls'][0]['controls']['description'].value,
+            reporter: this.myForm.controls.comments['controls'][0]['controls']['reporter'].value,
+            description: this.myForm.controls.comments['controls'][0]['controls']['description'].value,
       });
+
     }
     const body: Bug = {
       title: myform.controls.title.value,

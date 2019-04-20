@@ -10,16 +10,30 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-<div class="row" *ngFor="let comment of existingComments">
+<!-- <div class="row" *ngFor="let comment of existingComments">
 <div class="col-3">
   Reporter Name:  {{comment.reporter}}
 </div>
 <div class="col-7">
   Comment: {{comment.description}}
 </div>
+</div> -->
 
+<table mat-table [dataSource]="existingComments">
 
-</div>
+    <ng-container matColumnDef="Reporter">
+        <th mat-header-cell *matHeaderCellDef> Reporter </th>
+        <td mat-cell *matCellDef="let element"> {{element.reporter}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
     </mat-expansion-panel>
 </div>
