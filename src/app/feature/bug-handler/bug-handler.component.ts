@@ -5,13 +5,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormArrayName } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { BaseComponent } from 'src/app/core/models/base-component';
 
 @Component({
   selector: 'app-bug-handler',
   templateUrl: './bug-handler.component.html',
   styleUrls: ['./bug-handler.component.scss']
 })
-export class BugHandlerComponent implements OnInit {
+export class BugHandlerComponent implements OnInit, BaseComponent {
+  canDeactivate = () => {
+    return this.myForm.pristine;  // if changed have been made prompt user for confirmation
+  }
 
   myForm: FormGroup;
   currentUrl: string;

@@ -97,7 +97,8 @@
         </button>
       </div>
       <div class="col">
-        <button class="sbmt-button" color="primary" type="submit" mat-button matTooltip="Submit">
+        <button class="sbmt-button" color="primary" type="submit" mat-button matTooltip="Submit"
+          [disabled]="myForm.pristine">
           <mat-icon>send</mat-icon>
         </button>
       </div>
