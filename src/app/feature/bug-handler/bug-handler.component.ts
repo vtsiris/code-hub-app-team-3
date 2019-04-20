@@ -14,7 +14,7 @@ import { BaseComponent } from 'src/app/core/models/base-component';
 })
 export class BugHandlerComponent implements OnInit, BaseComponent {
   canDeactivate = () => {
-    return this.myForm.pristine;  // if changed have been made prompt user for confirmation
+    return this.myForm.pristine;  // if changes have been made, prompt the user for confirmation
   }
 
   myForm: FormGroup;
