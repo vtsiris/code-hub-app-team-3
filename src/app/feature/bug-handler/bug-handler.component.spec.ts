@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BugHandlerComponent } from './bug-handler.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 describe('NewBugComponent', () => {
@@ -8,18 +9,14 @@ describe('NewBugComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BugHandlerComponent ]
-    })
-    .compileComponents();
+      declarations: [BugHandlerComponent],
+      imports: [ReactiveFormsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BugHandlerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });
